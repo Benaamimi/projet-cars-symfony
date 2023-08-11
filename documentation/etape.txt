@@ -16,4 +16,3 @@
 commande pour la bdd scalingo :
     scalingo apps   /pour afficher la bdd scalingo
     --app projetarik mysql-console     /pour naviguer dans la bdd scalingo
-    ccc
