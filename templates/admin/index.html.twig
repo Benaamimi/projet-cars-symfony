@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}admin{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-4">Back Office</h1>
+       
+    <div class="text-center my-3">
+            <a href="{{ path('vehicule_ajout') }}">
+                    <button type="button" class="btn btn-outline-primary "> Ajouter des vehicules </button>
+                </a>
+
+        <div class="text-center my-3">
+                <a  href="{{ path('vehicule_gestion') }}">
+                 <button type="button" class="btn btn-outline-primary">Gestion des vehicules</button>
+                </a>             
+                
+        <div class="text-center my-3">
+                <a href="{{ path('membre_ajout') }}">
+                <button type="button" class="btn btn-outline-secondary"> Ajouter des membres </button>
+                </a>
+        </div>
+
+        <div class="text-center my-3">
+                <a href="{{ path('membre_gestion') }}">
+                <button type="button" class="btn btn-outline-secondary"> Gestion des membres </button>
+                </a>
+         </div>
+
+        <div class="text-center mt-5">
+                <a href="{{path('home')}}">
+                <button type="button" class="btn btn-success "> Retour à la page d'accueil </button>
+                </a>
+        </div>
+
+
+{% endblock %}
+
+     
+            
+        
+            
+          

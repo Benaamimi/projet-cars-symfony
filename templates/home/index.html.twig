@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper text-center my-4">
+    <h1>Bienvenu à bord </h1>
+    <p>Location de voiture 24h/24 et 7j/7</p>
+</div>
+
+<div class="text-center my-3 mt-2">
+    {# <img class="text-center" src={{asset('/img/car-accueil.jpg')}} > #}
+</div>
+
+    <div class="container text-center px-4">
+        <section class="row gx-4 gy-3">
+        {% for vehicule in vehicules %}
+            <div class="col-md-3">
+                <div class="card border-primary">
+                    <div class="card-header">{{ vehicule.titre }}</div>
+                    <img src="{{ vehicule.photo }}">
+                    <div class="card-header">{{ vehicule.marque }}</div>
+                    <div class="card-header">{{ vehicule.modele}}</div>
+                    <div class="card-header">{{ vehicule.description|slice(0, 10) }} <p> <a class="text-secondary" href="#">suite</a> </p> </div>
+                    <div class="card-header">{{ vehicule.prixjournalier}}</div>
+                    {# <div class="card-body text-center"> #}
+                        {# <img class="img-fluid" src="{{ vehicule.photo }}" alt=""> #}
+                        {# <p>Categorie : {{ article.category.title }}</p>
+                        {# * le filtre raw permet d'interprété les balises HTML #}
+                        {# {{ article.content|slice(0, 100) }} #}
+                        {# <p>Ecrit le {{ vehicule.createdAt|date('d/m/Y à H:i:s') }}</p> #}
+                        {# </div> #}
+                    </div>
+                    <div class="text-center my-2"> 
+                        <a href="{{ path('vehicule_show', {id: vehicule.id} ) }}" class="btn btn-primary">voir plus</a>
+                    </div>
+                </div>
+        {% endfor %}
+        </section>
+
+   
+{% endblock %}

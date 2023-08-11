@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Vehicule n°{{ vehicule.id }}{% endblock %}
+
+{% block body %}
+<div class="text-center">
+    <a href="{{path('home') }}">
+        <button type="button" class=" btn btn-outline-secondary my-4 "> Retour à la page d'accueil </button>
+    </a>
+    
+    <div class="container mt-5">
+        <div class="card border-primary mb-3">
+            <div class="card-header text-center"><img class="img-fluid" src="{{ vehicule.photo }}" alt=""></div>
+            <div class="card-body">
+                <h4 class="card-title text-center">{{ vehicule.titre }}</h4>
+                {{ vehicule.description|raw }}
+                <p>{{  vehicule.dateenregistrement|date('d/m/Y à H:i:s') }}</p>
+              
+
+                
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="container my-4 border border-primary p-4">
+    
+    <h1 class="text-center my-4">Réservation</h1>
+
+    {# {{ form_errors(registrationForm) }} #}
+
+    {{ form_start(commandeForm) }}
+        {# {{ form_row(commandeForm.date_heure_depart) }} #}
+        {# {{ form_row(commandeForm.date_heure_fin) }} #}
+        {# {{ form_row(commandeForm.prix_total) }} #}
+        {# {{ form_row(commandeForm.date_enregistrement) }} #}
+        {# {{ form_row(commandeForm.membres) }}
+        {{ form_row(commandeForm.vehicule) }} #}
+        {# <button type="submit" class="btn btn-primary">Valider</button> #}
+        {{ form_end(commandeForm) }}
+{# </div> #}
+
+{% endblock %}

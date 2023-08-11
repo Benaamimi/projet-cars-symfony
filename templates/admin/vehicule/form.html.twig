@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajoutez un vehicule{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container my-4 border border-primary p-4">
+        <h1 class="text-center">Ajout Voiture</h1>
+        {{ form_start(formVehicule)}} 
+            {{ form_row(formVehicule.titre)}} 
+            {{ form_row(formVehicule.marque)}} 
+            {{ form_row(formVehicule.modele)}} 
+            {{ form_row(formVehicule.description)}}  
+            {{ form_row(formVehicule.photo)}} 
+            {{ form_row(formVehicule.prix_journalier)}} 
+            {# {{ form_row(formVehicule.date_enregistrement)}}  #}
+            <button class="btn btn-primary">Ajouter</button>
+            {{ form_end(formVehicule)}}
+    
+</div>
+
+   
+{% endblock %}

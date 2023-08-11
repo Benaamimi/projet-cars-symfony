@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des membres{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper text-center my-4">
+    <h1>Liste des membres</h1>
+
+    <div class="container mt-5">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>roles</th>
+                    <th>Civilite</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date d'enregistrement</th>
+                    <th>option</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for membre in membres %}
+                    
+                    <tr>
+                        <td>{{ membre.id }}</td> 
+                        <td>{{ membre.email }}</td>
+
+                        <td>
+                            {% for role in membre.roles %}
+                                {% if role == "ROLE_USER" %}
+                                    Utilisateur
+                                {% elseif role == "ROLE_ADMIN" %}
+                                    Administrateur
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+
+                        <td>{{ membre.civilite }}</td>
+                        <td>{{ membre.nom }}</td>
+                        <td>{{ membre.prenom }}</td>
+                        <td>{{ membre.dateenregistrement|date('d/m/Y à H:i:s') }}</td> 
+                        <td>
+                            <a href="{{ path('membre_modifier', {id: membre.id}) }}" class="text-warning mx-2">modifier</a>
+                            
+                            <a href="{{ path('membre_supprimer', {id: membre.id}) }}" class="text-danger">supprimer</a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+</div>
+
+   
+{% endblock %}
