@@ -29,6 +29,17 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('nom')
             // ->add('roles')
+            // ->add('roles', ChoiceType::class, [
+            //     // 'label' => 'Tipo de usuario',
+            //     // 'attr' => [
+            //     //     'multiple' => true,
+            //     //     'class'=>'form-control myselect'
+            //     // ],
+            //     'choices'  => [
+            //         'Admin' => 'ROLE_ADMIN',
+            //         'User' => 'ROLE_USER'
+            //     ],
+            // ])
             ->add('prenom')
             ->add('email')
             // ->add('agreeTerms', CheckboxType::class, [

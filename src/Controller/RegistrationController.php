@@ -15,15 +15,15 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('membre/modifier/{id}', name:'membre_modifier')]
+    // #[Route('membre/modifier/{id}', name:'membre_modifier')]
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Membre $user = null): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager/*, Membre $user = null*/): Response
     {
         
-        if($user == null)
-        {
+        // if($user == null)
+        // {
             $user = new Membre;
-        }
+        // }
         
 
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -52,5 +52,46 @@ class RegistrationController extends AbstractController
             'editMode' => $user->getId() !== null,
         ]);
     }
+
+// -------------------------test modifier membre-------------------------
+
+    #[Route('membre/modifier/{id}', name:'membre_modifier')]
+    public function ajouter(Request $request, EntityManagerInterface $entityManager, Membre $user = null): Response
+    {
+        
+    {
+          
+        if($user == null)
+        {
+            $user = new Membre;
+        }
+        
+
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $user->setDateEnregistrement(new \datetime);
+            // $user->setPassword();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+            return $this->redirectToRoute('membre_gestion');
+        }
+
+        return $this->render('/admin/membre/modifier.html.twig', [
+            'registrationForm' => $form/*->createView()*/,
+            'editMode' => $user->getId() !== null,
+        ]);
+    }
+
+    }
+
+
+ 
+
    
 }
