@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -27,19 +28,20 @@ class RegistrationFormType extends AbstractType
                     
                 ],
             ])
+
             ->add('nom')
-            // ->add('roles')
-            // ->add('roles', ChoiceType::class, [
-            //     // 'label' => 'Tipo de usuario',
-            //     // 'attr' => [
-            //     //     'multiple' => true,
-            //     //     'class'=>'form-control myselect'
-            //     // ],
-            //     'choices'  => [
-            //         'Admin' => 'ROLE_ADMIN',
-            //         'User' => 'ROLE_USER'
-            //     ],
-            // ])
+
+            ->add('roles', CollectionType::class, [
+                'entry_type'   => ChoiceType::class,
+                'entry_options'  => [
+                    'label' => false,
+                    'choices' => [
+                        'Admin' => 'ROLE_ADMIN',
+                        'User' => 'ROLE_USER',
+                    ],
+                ],
+            ])
+
             ->add('prenom')
             ->add('email')
             // ->add('agreeTerms', CheckboxType::class, [

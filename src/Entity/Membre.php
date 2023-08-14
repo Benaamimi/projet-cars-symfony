@@ -80,9 +80,9 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
+    // /**
+    //  * @see UserInterface
+    //  */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -91,6 +91,10 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
 
         return array_unique($roles);
     }
+
+
+   
+
 
     public function setRoles(array $roles): static
     {
