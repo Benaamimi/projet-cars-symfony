@@ -28,6 +28,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('nom')
+            // ->add('roles')
             ->add('prenom')
             ->add('email')
             // ->add('agreeTerms', CheckboxType::class, [

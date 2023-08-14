@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use Membre;
 use App\Entity\Commande;
 use App\Entity\Vehicule;
 use App\Form\CommandeType;
 use App\Form\VehiculeType;
+use App\Repository\MembreRepository;
+use App\Repository\CommandeRepository;
 use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,9 +37,11 @@ class HomeController extends AbstractController
 
         $form = $this->createForm(CommandeType::class, $commande );
         $form->handleRequest($request);
-
+        
         if($form->isSubmitted() && $form->isValid())
         {
+            // $commande->setPrixTotal(new \int);
+            // $commande->setMembres();
             $commande->setDateEnregistrement(new \datetime);
 
             $manager->persist($commande);
@@ -45,13 +50,26 @@ class HomeController extends AbstractController
         }
 
        
+
+       
         $vehicule = $repo->find($id) ;
-        // dd($article);
         return $this->render('home/show.html.twig', [
             'vehicule' => $vehicule,
             'commandeForm' => $form,
         ]);
     }
+
+
+
+    // #[Route('/membre/gestion', name:'membre_gestion')]
+    // public function gestionMember(CommandeRepository $repo) : Response
+    // {
+    //     $commandes = $repo->findAll();
+    //     return $this->render('admin/membre/gestion.html.twig', [
+    //         'commandes' => $commandes,
+    //     ]);
+
+    // }
 
    
 

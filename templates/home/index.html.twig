@@ -5,38 +5,43 @@
 {% block body %}
 
 
-<div class="example-wrapper text-center my-4">
-    <h1>Bienvenu à bord </h1>
-    <p>Location de voiture 24h/24 et 7j/7</p>
-</div>
+{# <img src={{asset('media/car.jpg')}} width="100%"> #}
 
-<div class="text-center my-3 mt-2">
-    {# <img class="text-center" src={{asset('/img/car-accueil.jpg')}} > #}
-</div>
 
-    <div class="container text-center px-4">
-        <section class="row gx-4 gy-3">
+<div class="card text-bg-dark">
+    <img src={{asset('media/car.jpg')}} width="100%" class="card-img">
+    <div class="card-img-overlay">
+      <h1 class="card-title text-primary text-center">Bienvenu à bord</h1>
+      <p class="card-text text-primary text-center">Location de voiture 24h/24 et 7j/7.</p>
+    </div>
+  </div>
+
+
+  
+
+    <div class="container text-center my-4">
+        <section class="" >
         {% for vehicule in vehicules %}
-            <div class="col-md-3">
-                <div class="card border-primary">
-                    <div class="card-header">{{ vehicule.titre }}</div>
-                    <img src="{{ vehicule.photo }}">
-                    <div class="card-header">{{ vehicule.marque }}</div>
-                    <div class="card-header">{{ vehicule.modele}}</div>
-                    <div class="card-header">{{ vehicule.description|slice(0, 10) }} <p> <a class="text-secondary" href="#">suite</a> </p> </div>
-                    <div class="card-header">{{ vehicule.prixjournalier}}</div>
-                    {# <div class="card-body text-center"> #}
-                        {# <img class="img-fluid" src="{{ vehicule.photo }}" alt=""> #}
-                        {# <p>Categorie : {{ article.category.title }}</p>
-                        {# * le filtre raw permet d'interprété les balises HTML #}
-                        {# {{ article.content|slice(0, 100) }} #}
-                        {# <p>Ecrit le {{ vehicule.createdAt|date('d/m/Y à H:i:s') }}</p> #}
-                        {# </div> #}
-                    </div>
+        <div class="card mb-3" style="width: 80%;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ vehicule.photo }}" class="img-fluid rounded-start">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                        <h5 class="card-title">{{ vehicule.titre }}</h5>
+                        <h5 class="card-title">{{ vehicule.marque }}</h5>
+                        <h5 class="card-title">{{ vehicule.modele}}</h5>
+                        <p class="card-text"><small class="text-body-secondary">{{ vehicule.description|slice(0, 10) }}</small></p>
+                        <h5 class="card-title">{{ vehicule.prixjournalier}}</h5>
                     <div class="text-center my-2"> 
                         <a href="{{ path('vehicule_show', {id: vehicule.id} ) }}" class="btn btn-primary">voir plus</a>
                     </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
         {% endfor %}
         </section>
 

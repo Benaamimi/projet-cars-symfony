@@ -2,24 +2,28 @@
 
 namespace App\Controller;
 
-use App\Entity\Membre;
 use App\Entity\User;
+use App\Entity\Membre;
 use App\Form\RegistrationFormType;
+use App\Repository\MembreRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
+    #[Route('membre/modifier/{id}', name:'membre_modifier')]
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Membre $user = null): Response
     {
         
-        
+        if($user == null)
+        {
             $user = new Membre;
+        }
         
 
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -45,7 +49,8 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-            // 'editMode' => $user->getId() !== null,
+            'editMode' => $user->getId() !== null,
         ]);
     }
+   
 }

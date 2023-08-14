@@ -77,32 +77,38 @@ class AdminController extends AbstractController
 
     // ---------------------membres---------------------------------------------//
 
-    #[Route('membre/modifier/{id}', name:'membre_modifier')]
-    #[Route('membre/ajout', name: 'membre_ajout')]
-    public function ajouter(Request $request, EntityManagerInterface $manager): Response
-    {
+    // #[Route('membre/modifier/{id}', name:'membre_modifier')]
+    // #[Route('membre/ajout', name: 'membre_ajout')]
+    // public function ajouter(Request $request, EntityManagerInterface $manager): Response
+    // {
        
-            $membre = new Membre;
+    //         $membre = new Membre;
         
 
-        $form = $this->createForm(MemberType::class, $membre );
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $manager->persist($membre);
-            $manager->flush();
-            return $this->redirectToRoute('membre_gestion');
-        }
-
-        return $this->render('admin/membre/form.html.twig', [
-            'formMembre' => $form,
-            'editMode' => $membre->getId() !== null,
-        ]);
-    }
+    //     $form = $this->createForm(MemberType::class, $membre );
+    //     $form->handleRequest($request);
 
 
-    
+        
+
+
+    //     if($form->isSubmitted() && $form->isValid())
+    //     {
+
+    //         $membre->setDateEnregistrement(new \datetime);
+
+
+    //         $manager->persist($membre);
+    //         $manager->flush();
+    //         return $this->redirectToRoute('membre_gestion');
+    //     }
+
+    //     return $this->render('admin/membre/form.html.twig', [
+    //         'formMembre' => $form,
+    //         'editMode' => $membre->getId() !== null,
+    //     ]);
+    // }
+
 
     
     #[Route('/membre/gestion', name:'membre_gestion')]
@@ -120,4 +126,10 @@ class AdminController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('membre_gestion');
     }
+
+
+    
+
+    
+  
 }
