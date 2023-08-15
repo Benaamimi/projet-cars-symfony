@@ -31,10 +31,10 @@
                         <td>{{ membre.email }}</td>
 
                         <td>
-                            {% for role in membre.roles %}
-                                {% if role == "ROLE_USER" %}
+                            {% for roles in membre.roles %}
+                                {% if roles == "ROLE_USER" %}
                                     Utilisateur
-                                {% elseif role == "ROLE_ADMIN" %}
+                                {% elseif roles == "ROLE_ADMIN" %}
                                     Administrateur
                                 {% endif %}
                             {% endfor %}

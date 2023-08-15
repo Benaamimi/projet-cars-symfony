@@ -9,41 +9,43 @@
 
 
 <div class="card text-bg-dark">
-    <img src={{asset('media/car.jpg')}} width="100%" class="card-img">
+    <img src={{asset('media/bmw.jpeg')}} width="100%" class="card-img">
     <div class="card-img-overlay">
       <h1 class="card-title text-primary text-center">Bienvenu à bord</h1>
       <p class="card-text text-primary text-center">Location de voiture 24h/24 et 7j/7.</p>
     </div>
-  </div>
+</div>
+
+
+
 
 
   
 
-    <div class="container text-center my-4">
-        <section class="" >
-        {% for vehicule in vehicules %}
-        <div class="card mb-3" style="width: 80%;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="{{ vehicule.photo }}" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                        <h5 class="card-title">{{ vehicule.titre }}</h5>
-                        <h5 class="card-title">{{ vehicule.marque }}</h5>
-                        <h5 class="card-title">{{ vehicule.modele}}</h5>
-                        <p class="card-text"><small class="text-body-secondary">{{ vehicule.description|slice(0, 10) }}</small></p>
-                        <h5 class="card-title">{{ vehicule.prixjournalier}}</h5>
-                    <div class="text-center my-2"> 
-                        <a href="{{ path('vehicule_show', {id: vehicule.id} ) }}" class="btn btn-primary">voir plus</a>
+      <div class="container text-center my-4">
+        <div class="" >
+            {% for vehicule in vehicules %}
+                <div class="card mb-3" style="width: 100%;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{{ asset(vehicule.photo) }}" alt="" width="400" height="auto">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                                <h4 class="card-title">{{ vehicule.titre }}</h4>
+                                <h5 class="card-title">{{ vehicule.marque }}</h5>
+                                <h6 class="card-title">{{ vehicule.modele}}</h6>
+                                <p class="card-text"><small class="text-body-secondary">{{ vehicule.description|slice(0, 100) }}</small></p>
+                                <h6 class="card-title text-success">{{ vehicule.prixjournalier}}€</h6>
+                            <div class="my-2"> 
+                                <a href="{{ path('vehicule_show', {id: vehicule.id} ) }}" class="btn btn-outline-primary">voir plus</a>
+                            </div>
+                        </div>
+                      </div>
                     </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        {% endfor %}
-        </section>
+                  </div>            
+              {% endfor %}
+          
 
    
 {% endblock %}
